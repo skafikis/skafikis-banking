@@ -4,5 +4,5 @@ import br.com.skafikis.dto.UserAccountDTO;
 
 public interface IUserRepository {
     UserAccountDTO createUserAccount(UserAccountDTO userAccountDTO);
-    UserAccountDTO findByDocument(String document);
+    UserAccountDTO findBy(String document);
 }
