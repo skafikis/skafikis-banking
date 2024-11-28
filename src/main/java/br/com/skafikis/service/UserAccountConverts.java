@@ -12,6 +12,7 @@ public class UserAccountConverts {
                 userAccount.getEmail(),
                 userAccount.getDocument(),
                 userAccount.getAccountNumber(),
+                null,
                 userAccount.getCreatedAt(),
                 userAccount.getDisabledAt()
         );
@@ -24,7 +25,7 @@ public class UserAccountConverts {
                 userAccountDTO.getEmail(),
                 userAccountDTO.getDocument(),
                 userAccountDTO.getAccountNumber(),
-                null,
+                userAccountDTO.getPassword(),
                 userAccountDTO.getCreatedAt(),
                 userAccountDTO.getDisabledAt()
         );

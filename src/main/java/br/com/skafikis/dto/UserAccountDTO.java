@@ -9,17 +9,19 @@ public class UserAccountDTO {
     private String name;
     private String email;
     private String document;
-    private String accountNumber;;
+    private String accountNumber;
+    private String password;
     private LocalDateTime createdAt;
     private LocalDateTime disabledAt;
 
     public UserAccountDTO(String id, String name, String email, String document, String accountNumber,
-                          LocalDateTime createdAt, LocalDateTime disabledAt) {
+                          String password, LocalDateTime createdAt, LocalDateTime disabledAt) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.document = document;
         this.accountNumber = accountNumber;
+        this.password = password;
         this.createdAt = createdAt;
         this.disabledAt = disabledAt;
     }
@@ -58,6 +60,14 @@ public class UserAccountDTO {
 
     public void setAccountNumber(String accountNumber) {
         this.accountNumber = accountNumber;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public LocalDateTime getCreatedAt() {

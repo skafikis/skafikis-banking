@@ -8,7 +8,7 @@ public interface IUserInterface {
     Integer showInitialScreenMenu();
     Integer showHomeMenu(String userName);
     LoginDTO getLoginData();
-    UserAccountDTO getUserData();
+    UserAccountDTO getCreateUserData();
 
     void showErrorMessage(String message);
     void showExitMessage();

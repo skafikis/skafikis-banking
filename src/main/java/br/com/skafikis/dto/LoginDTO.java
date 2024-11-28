@@ -1,6 +1,7 @@
 package br.com.skafikis.dto;
 
 public class LoginDTO {
+
     private String document;
     private String password;
 

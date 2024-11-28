@@ -5,6 +5,7 @@ import br.com.skafikis.dto.LoginDTO;
 import br.com.skafikis.dto.UserAccountDTO;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class ConsoleUI implements IUserInterface {
@@ -73,23 +74,51 @@ public class ConsoleUI implements IUserInterface {
     }
 
     @Override
-    public UserAccountDTO getUserData() {
+    public UserAccountDTO getCreateUserData() {
         System.out.println("Enter Your name:");
         String name = scanner.nextLine();
 
         System.out.println("Enter Your email:");
         String email = scanner.nextLine();
 
+        System.out.println("Enter Your Document:");
+        String document = scanner.nextLine();
+
         System.out.println("Enter Your Account Number:");
         String accountNumber = scanner.nextLine();
 
-        System.out.println("Enter Your Crated At:");
-        LocalDateTime createdAt = LocalDateTime.parse(scanner.nextLine());
+        System.out.println("Enter Your Password:");
+        String password = scanner.nextLine();
 
-        System.out.println("Enter Your Disabled At:");
-        LocalDateTime disabledAt = LocalDateTime.parse(scanner.nextLine());
+        System.out.println("Enter Your Crated At (format dd/MM/yyyy HH:mm):");
+        LocalDateTime createdAt = null;
+        while (createdAt == null) {
+            try {
 
-        return new UserAccountDTO(null, name, email, null, accountNumber, createdAt, disabledAt);
+                String date = scanner.nextLine();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+                createdAt = LocalDateTime.parse(date, formatter);
+
+            } catch (Exception exception) {
+                System.out.println("Invalid date format! Please try again.");
+            }
+        }
+
+        System.out.println("Enter Your Disabled At (format dd/MM/yyyy HH:mm):");
+        LocalDateTime disabledAt = null;
+        while (disabledAt == null) {
+            try {
+
+                String date = scanner.nextLine();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+                disabledAt = LocalDateTime.parse(date, formatter);
+
+            } catch (Exception exception) {
+                System.out.println("Invalid date format! Please try again.");
+            }
+        }
+
+        return new UserAccountDTO(null, name, email, document, accountNumber, password, createdAt, disabledAt);
     }
 
     @Override
