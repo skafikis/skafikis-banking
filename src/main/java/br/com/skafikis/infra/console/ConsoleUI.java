@@ -4,36 +4,61 @@ import br.com.skafikis.domain.repositories.IUserInterface;
 import br.com.skafikis.dto.LoginDTO;
 import br.com.skafikis.dto.UserAccountDTO;
 
+import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class ConsoleUI implements IUserInterface {
 
-    public Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
 
     @Override
     public Integer showInitialScreenMenu() {
-        Integer menu = null;
+        Integer option = 0;
 
-        while (menu == null) {
+        while (option < 1 || option > 3) {
             try {
                 System.out.println("Welcome to Skafikis Bank Console!");
                 System.out.println("[1] Login");
                 System.out.println("[2] Create Account");
                 System.out.println("[3] Logout");
 
-                menu = Integer.parseInt(scanner.nextLine());
+                option = Integer.parseInt(scanner.nextLine());
 
-            } catch (Exception exception) {
-                System.out.println("Invalid input. Please enter a number.");
+                if (option < 1 || option > 3) {
+                    System.out.println("Invalid option! Please try again.");
+                }
+
+            } catch (NumberFormatException exception) {
+                System.out.println("Invalid option! Please try again.");
             }
         }
 
-        return menu;
+        return option;
     }
 
     @Override
-    public Integer showHomeMenu() {
-        return 0;
+    public Integer showHomeMenu(String userName) {
+        Integer option = 0;
+
+        while (option < 1 || option > 3) {
+            try {
+                System.out.println("Hello " + userName + "! What do you want to do?");
+                System.out.println("[1] Generate QR Code Pix");
+                System.out.println("[2] Consult Bill");
+                System.out.println("[3] Pay Bill");
+
+                option = Integer.parseInt(scanner.nextLine());
+
+                if (option < 1 || option > 3) {
+                    System.out.println("Invalid option! Please try again.");
+                }
+
+            } catch (NumberFormatException exception) {
+                System.out.println("Invalid option! Please try again.");
+            }
+        }
+
+        return option;
     }
 
     @Override
@@ -49,16 +74,31 @@ public class ConsoleUI implements IUserInterface {
 
     @Override
     public UserAccountDTO getUserData() {
-        return null;
+        System.out.println("Enter Your name:");
+        String name = scanner.nextLine();
+
+        System.out.println("Enter Your email:");
+        String email = scanner.nextLine();
+
+        System.out.println("Enter Your Account Number:");
+        String accountNumber = scanner.nextLine();
+
+        System.out.println("Enter Your Crated At:");
+        LocalDateTime createdAt = LocalDateTime.parse(scanner.nextLine());
+
+        System.out.println("Enter Your Disabled At:");
+        LocalDateTime disabledAt = LocalDateTime.parse(scanner.nextLine());
+
+        return new UserAccountDTO(null, name, email, null, accountNumber, createdAt, disabledAt);
     }
 
     @Override
     public void showErrorMessage(String message) {
-
+        System.out.println("Error: " + message);
     }
 
     @Override
     public void showExitMessage() {
-
+        System.out.println("Thank you for using Skafikis Bank! Goodbye.");
     }
 }
