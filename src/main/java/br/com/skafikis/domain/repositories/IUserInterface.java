@@ -6,7 +6,7 @@ import br.com.skafikis.dto.UserAccountDTO;
 public interface IUserInterface {
 
     Integer showInitialScreenMenu();
-    Integer showHomeMenu();
+    Integer showHomeMenu(String userName);
     LoginDTO getLoginData();
     UserAccountDTO getUserData();
 
