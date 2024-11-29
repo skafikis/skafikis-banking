@@ -9,12 +9,23 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class SwingUI implements IUserInterface {
+
     @Override
     public Integer showInitialScreenMenu() {
 
-        String[] options = new String[] {"Login", "Create Account", "Logout"};
+        /*String menu = "Welcome to Skafikis Bank Swing!\nMain Menu\n1 Login\n2 Create Account\n3 Logout";
+        String choice = JOptionPane.showInputDialog(
+                null,
+                menu,
+                "Main Menu",
+                JOptionPane.INFORMATION_MESSAGE
+        );
 
-        Integer choice = JOptionPane.showOptionDialog(
+        return Integer.parseInt(choice);*/
+
+         String[] options = new String[] {"Login", "Create Account", "Logout"};
+
+       Integer choice = JOptionPane.showOptionDialog(
                 null,
                 "Welcome to Skafikis Bank Swing!",
                 "Main Menu",
@@ -24,8 +35,6 @@ public class SwingUI implements IUserInterface {
                 options,
                 options[0]
         );
-
-
         return choice + 1; // remember + 1
     }
 
@@ -79,7 +88,7 @@ public class SwingUI implements IUserInterface {
     public void showErrorMessage(String message) {
         JOptionPane.showMessageDialog(
                 null,
-                "Error" + message,
+                "Error " + message,
                 "Error",
                 JOptionPane.ERROR_MESSAGE
         );
